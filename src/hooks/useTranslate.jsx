@@ -1,33 +1,25 @@
-import { useEffect, useState } from "react";
-import { OpenAI } from "openai";
-
-const openai = new OpenAI({
-  apiKey: process.env.NEXT_PUBLIC_API_KEY,
-  dangerouslyAllowBrowser: true,
-});
+import { useEffect, useState } from 'react';
 
 const useTranslate = (sourceText, selectedLanguage) => {
   const [targetText, setTargetText] = useState("");
 
   useEffect(() => {
-    const handleTranslate = async (sourceText) => {
+    const handleTranslate = async () => {
       try {
-        const response = await openai.chat.completions.create({
-          model: "gpt-4o",
-          messages: [
-            {
-              role: "user",
-              content: `You will be provided with a sentence. This sentence: 
-              ${sourceText}. Your tasks are to:
-              - Detect what language the sentence is in
-              - Translate the sentence into ${selectedLanguage}
-              Do not return anything other than the translated sentence.`,
-            },
-          ],
+        const response = await fetch('/api/translate', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ sourceText, selectedLanguage }),
         });
 
-        const data = response.choices[0].message.content;
-        setTargetText(data);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+
+        const data = await response.json();
+        setTargetText(data.translatedText || "");
       } catch (error) {
         console.error("Error translating text:", error);
       }
@@ -35,7 +27,7 @@ const useTranslate = (sourceText, selectedLanguage) => {
 
     if (sourceText.trim()) {
       const timeoutId = setTimeout(() => {
-        handleTranslate(sourceText);
+        handleTranslate();
       }, 500); // Adjust the delay as needed
 
       return () => clearTimeout(timeoutId);
