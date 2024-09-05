@@ -13,10 +13,7 @@
   </div>
 
   <h3 align="center">LinguaSpeak</h3>
-
-   <div align="center">
-     Build this project step by step with our detailed tutorial on <a href="https://www.youtube.com/@albertmends" target="_blank"><b>Your YouTube Channel</b></a>. Join the community!
-    </div>
+  
 </div>
 
 ## 📋 <a name="table">Table of Contents</a>
@@ -75,7 +72,7 @@ Make sure you have the following installed on your machine:
 **Cloning the Repository**
 
 ```bash
-git clone https://github.com/mendsalbert/lingua-speak.git
+git clone https://github.com/mymapss/language_translator_app.git
 cd linguaspeak
 ```
 
