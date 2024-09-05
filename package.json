@@ -2,10 +2,9 @@
   "name": "lingua-speak",
   "version": "0.1.0",
   "private": true,
-  "script":
-  {
-   "dev": "next dev",
-    "build": "next build", 
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -32,14 +31,14 @@
   },
   "devDependencies": {
     "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/react": "^18.3.5",
+    "@types/react-dom": "^18.3.0",
     "@types/regenerator-runtime": "^0.13.7",
     "eslint": "^8",
     "eslint-config-next": "14.2.4",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "typescript": "^5.5.4"
   },
   "browserslist": [
     "last 2 Chrome versions"
